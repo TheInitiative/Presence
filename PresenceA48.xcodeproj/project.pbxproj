@@ -1,0 +1,601 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1467F4771BC1E89600851ED7 /* EstimoteSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1467F4761BC1E89600851ED7 /* EstimoteSDK.framework */; };
+		148CD5051BC0A03D00386C17 /* ParseLoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148CD5041BC0A03D00386C17 /* ParseLoginHelper.swift */; };
+		14A136381BC0A843000E708D /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A136371BC0A843000E708D /* ErrorHandling.swift */; };
+		33B70E221BC09DC8006414E9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B70E211BC09DC8006414E9 /* MainViewController.swift */; };
+		33B70E281BC0A12B006414E9 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B70E271BC0A12B006414E9 /* UserTableViewCell.swift */; };
+		33DE6ABB1BC78D7B0086E525 /* ParseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DE6ABA1BC78D7B0086E525 /* ParseHelper.swift */; settings = {ASSET_TAGS = (); }; };
+		33DE6ABF1BC8EFA10086E525 /* BeaconHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DE6ABE1BC8EFA10086E525 /* BeaconHelper.swift */; settings = {ASSET_TAGS = (); }; };
+		33FAB0FD1BC0BCAE00D4AC17 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FAB0FC1BC0BCAE00D4AC17 /* UserViewController.swift */; };
+		712DCA476CEE608C4602B638 /* Pods_PresenceA48.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45930B59687E6D9E036AF4C6 /* Pods_PresenceA48.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		AECF16611B0E0B1000CC83B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECF16601B0E0B1000CC83B2 /* AppDelegate.swift */; };
+		AECF16661B0E0B1000CC83B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AECF16641B0E0B1000CC83B2 /* Main.storyboard */; };
+		AECF16681B0E0B1000CC83B2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AECF16671B0E0B1000CC83B2 /* Images.xcassets */; };
+		AECF166B1B0E0B1000CC83B2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AECF16691B0E0B1000CC83B2 /* LaunchScreen.xib */; };
+		AECF16771B0E0B1000CC83B2 /* PresenceA48Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECF16761B0E0B1000CC83B2 /* PresenceA48Tests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AECF16711B0E0B1000CC83B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AECF16531B0E0B1000CC83B2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AECF165A1B0E0B1000CC83B2;
+			remoteInfo = PresenceA48;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1467F4761BC1E89600851ED7 /* EstimoteSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EstimoteSDK.framework; sourceTree = "<group>"; };
+		1467F4781BC1E90800851ED7 /* BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
+		148CD5041BC0A03D00386C17 /* ParseLoginHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseLoginHelper.swift; sourceTree = "<group>"; };
+		14A136371BC0A843000E708D /* ErrorHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandling.swift; sourceTree = "<group>"; };
+		33B70E211BC09DC8006414E9 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		33B70E271BC0A12B006414E9 /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		33DE6ABA1BC78D7B0086E525 /* ParseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParseHelper.swift; path = Helpers/ParseHelper.swift; sourceTree = "<group>"; };
+		33DE6ABE1BC8EFA10086E525 /* BeaconHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BeaconHelper.swift; path = Helpers/BeaconHelper.swift; sourceTree = "<group>"; };
+		33FAB0FC1BC0BCAE00D4AC17 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		45930B59687E6D9E036AF4C6 /* Pods_PresenceA48.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PresenceA48.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6BFF714F479BB72270B9203D /* Pods-PresenceA48.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PresenceA48.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PresenceA48/Pods-PresenceA48.debug.xcconfig"; sourceTree = "<group>"; };
+		82E639B2B3F6B841EF1A0052 /* Pods-PresenceA48.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PresenceA48.release.xcconfig"; path = "Pods/Target Support Files/Pods-PresenceA48/Pods-PresenceA48.release.xcconfig"; sourceTree = "<group>"; };
+		AECF165B1B0E0B1000CC83B2 /* PresenceA48.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PresenceA48.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AECF165F1B0E0B1000CC83B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AECF16601B0E0B1000CC83B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AECF16651B0E0B1000CC83B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AECF16671B0E0B1000CC83B2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		AECF166A1B0E0B1000CC83B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		AECF16701B0E0B1000CC83B2 /* PresenceA48Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PresenceA48Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AECF16751B0E0B1000CC83B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AECF16761B0E0B1000CC83B2 /* PresenceA48Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenceA48Tests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AECF16581B0E0B1000CC83B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				712DCA476CEE608C4602B638 /* Pods_PresenceA48.framework in Frameworks */,
+				1467F4771BC1E89600851ED7 /* EstimoteSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AECF166D1B0E0B1000CC83B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1464BFC61BC1DC5400C86243 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				14A136371BC0A843000E708D /* ErrorHandling.swift */,
+				148CD5041BC0A03D00386C17 /* ParseLoginHelper.swift */,
+				33DE6ABA1BC78D7B0086E525 /* ParseHelper.swift */,
+				33DE6ABE1BC8EFA10086E525 /* BeaconHelper.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		33B70E201BC09DA4006414E9 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				33B70E211BC09DC8006414E9 /* MainViewController.swift */,
+				33FAB0FC1BC0BCAE00D4AC17 /* UserViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		33B70E261BC0A121006414E9 /* Table Cells */ = {
+			isa = PBXGroup;
+			children = (
+				33B70E271BC0A12B006414E9 /* UserTableViewCell.swift */,
+			);
+			path = "Table Cells";
+			sourceTree = "<group>";
+		};
+		409182511E29E4D094B51BF6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1467F4761BC1E89600851ED7 /* EstimoteSDK.framework */,
+				45930B59687E6D9E036AF4C6 /* Pods_PresenceA48.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A0ADDB446139A6B68F5005AF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6BFF714F479BB72270B9203D /* Pods-PresenceA48.debug.xcconfig */,
+				82E639B2B3F6B841EF1A0052 /* Pods-PresenceA48.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		AECF16521B0E0B1000CC83B2 = {
+			isa = PBXGroup;
+			children = (
+				D53545EB1BC39779002BBEA0 /* Beacons */,
+				AECF165D1B0E0B1000CC83B2 /* PresenceA48 */,
+				AECF16731B0E0B1000CC83B2 /* PresenceA48Tests */,
+				AECF165C1B0E0B1000CC83B2 /* Products */,
+				A0ADDB446139A6B68F5005AF /* Pods */,
+				409182511E29E4D094B51BF6 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		AECF165C1B0E0B1000CC83B2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AECF165B1B0E0B1000CC83B2 /* PresenceA48.app */,
+				AECF16701B0E0B1000CC83B2 /* PresenceA48Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AECF165D1B0E0B1000CC83B2 /* PresenceA48 */ = {
+			isa = PBXGroup;
+			children = (
+				33B70E261BC0A121006414E9 /* Table Cells */,
+				33B70E201BC09DA4006414E9 /* View Controllers */,
+				1464BFC61BC1DC5400C86243 /* Helpers */,
+				AECF16601B0E0B1000CC83B2 /* AppDelegate.swift */,
+				AECF16641B0E0B1000CC83B2 /* Main.storyboard */,
+				AECF16691B0E0B1000CC83B2 /* LaunchScreen.xib */,
+				AECF16671B0E0B1000CC83B2 /* Images.xcassets */,
+				AECF165E1B0E0B1000CC83B2 /* Supporting Files */,
+			);
+			path = PresenceA48;
+			sourceTree = "<group>";
+		};
+		AECF165E1B0E0B1000CC83B2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1467F4781BC1E90800851ED7 /* BridgingHeader.h */,
+				AECF165F1B0E0B1000CC83B2 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AECF16731B0E0B1000CC83B2 /* PresenceA48Tests */ = {
+			isa = PBXGroup;
+			children = (
+				AECF16761B0E0B1000CC83B2 /* PresenceA48Tests.swift */,
+				AECF16741B0E0B1000CC83B2 /* Supporting Files */,
+			);
+			path = PresenceA48Tests;
+			sourceTree = "<group>";
+		};
+		AECF16741B0E0B1000CC83B2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AECF16751B0E0B1000CC83B2 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D53545EB1BC39779002BBEA0 /* Beacons */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Beacons;
+			path = PresenceA48/Beacons;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AECF165A1B0E0B1000CC83B2 /* PresenceA48 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AECF167A1B0E0B1000CC83B2 /* Build configuration list for PBXNativeTarget "PresenceA48" */;
+			buildPhases = (
+				AA5AE287D3EAD94DCE182109 /* Check Pods Manifest.lock */,
+				AECF16571B0E0B1000CC83B2 /* Sources */,
+				AECF16581B0E0B1000CC83B2 /* Frameworks */,
+				AECF16591B0E0B1000CC83B2 /* Resources */,
+				EE946BA13DAE9E60391B7888 /* Embed Pods Frameworks */,
+				DA84B36CCE646971E07A169C /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PresenceA48;
+			productName = PresenceA48;
+			productReference = AECF165B1B0E0B1000CC83B2 /* PresenceA48.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AECF166F1B0E0B1000CC83B2 /* PresenceA48Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AECF167D1B0E0B1000CC83B2 /* Build configuration list for PBXNativeTarget "PresenceA48Tests" */;
+			buildPhases = (
+				AECF166C1B0E0B1000CC83B2 /* Sources */,
+				AECF166D1B0E0B1000CC83B2 /* Frameworks */,
+				AECF166E1B0E0B1000CC83B2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AECF16721B0E0B1000CC83B2 /* PBXTargetDependency */,
+			);
+			name = PresenceA48Tests;
+			productName = PresenceA48Tests;
+			productReference = AECF16701B0E0B1000CC83B2 /* PresenceA48Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AECF16531B0E0B1000CC83B2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0710;
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = "Quinn Baker";
+				TargetAttributes = {
+					AECF165A1B0E0B1000CC83B2 = {
+						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = E94PZ6NN69;
+					};
+					AECF166F1B0E0B1000CC83B2 = {
+						CreatedOnToolsVersion = 6.3.2;
+						TestTargetID = AECF165A1B0E0B1000CC83B2;
+					};
+				};
+			};
+			buildConfigurationList = AECF16561B0E0B1000CC83B2 /* Build configuration list for PBXProject "PresenceA48" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AECF16521B0E0B1000CC83B2;
+			productRefGroup = AECF165C1B0E0B1000CC83B2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AECF165A1B0E0B1000CC83B2 /* PresenceA48 */,
+				AECF166F1B0E0B1000CC83B2 /* PresenceA48Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AECF16591B0E0B1000CC83B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AECF16661B0E0B1000CC83B2 /* Main.storyboard in Resources */,
+				AECF166B1B0E0B1000CC83B2 /* LaunchScreen.xib in Resources */,
+				AECF16681B0E0B1000CC83B2 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AECF166E1B0E0B1000CC83B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AA5AE287D3EAD94DCE182109 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DA84B36CCE646971E07A169C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PresenceA48/Pods-PresenceA48-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EE946BA13DAE9E60391B7888 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PresenceA48/Pods-PresenceA48-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AECF16571B0E0B1000CC83B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14A136381BC0A843000E708D /* ErrorHandling.swift in Sources */,
+				148CD5051BC0A03D00386C17 /* ParseLoginHelper.swift in Sources */,
+				33DE6ABB1BC78D7B0086E525 /* ParseHelper.swift in Sources */,
+				AECF16611B0E0B1000CC83B2 /* AppDelegate.swift in Sources */,
+				33FAB0FD1BC0BCAE00D4AC17 /* UserViewController.swift in Sources */,
+				33DE6ABF1BC8EFA10086E525 /* BeaconHelper.swift in Sources */,
+				33B70E281BC0A12B006414E9 /* UserTableViewCell.swift in Sources */,
+				33B70E221BC09DC8006414E9 /* MainViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AECF166C1B0E0B1000CC83B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AECF16771B0E0B1000CC83B2 /* PresenceA48Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AECF16721B0E0B1000CC83B2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AECF165A1B0E0B1000CC83B2 /* PresenceA48 */;
+			targetProxy = AECF16711B0E0B1000CC83B2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		AECF16641B0E0B1000CC83B2 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AECF16651B0E0B1000CC83B2 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		AECF16691B0E0B1000CC83B2 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AECF166A1B0E0B1000CC83B2 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AECF16781B0E0B1000CC83B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = PresenceA48/BridgingHeader.h;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AECF16791B0E0B1000CC83B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = PresenceA48/BridgingHeader.h;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AECF167B1B0E0B1000CC83B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6BFF714F479BB72270B9203D /* Pods-PresenceA48.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"\"$(SRCROOT)/EstimoteSDK.framework\"",
+				);
+				INFOPLIST_FILE = PresenceA48/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.QuinnBaker.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = PresenceA48/BridgingHeader.h;
+			};
+			name = Debug;
+		};
+		AECF167C1B0E0B1000CC83B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 82E639B2B3F6B841EF1A0052 /* Pods-PresenceA48.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"\"$(SRCROOT)/EstimoteSDK.framework\"",
+				);
+				INFOPLIST_FILE = PresenceA48/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.QuinnBaker.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = PresenceA48/BridgingHeader.h;
+			};
+			name = Release;
+		};
+		AECF167E1B0E0B1000CC83B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = PresenceA48Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.QuinnBaker.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PresenceA48.app/PresenceA48";
+			};
+			name = Debug;
+		};
+		AECF167F1B0E0B1000CC83B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = PresenceA48Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.QuinnBaker.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PresenceA48.app/PresenceA48";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AECF16561B0E0B1000CC83B2 /* Build configuration list for PBXProject "PresenceA48" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AECF16781B0E0B1000CC83B2 /* Debug */,
+				AECF16791B0E0B1000CC83B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AECF167A1B0E0B1000CC83B2 /* Build configuration list for PBXNativeTarget "PresenceA48" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AECF167B1B0E0B1000CC83B2 /* Debug */,
+				AECF167C1B0E0B1000CC83B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AECF167D1B0E0B1000CC83B2 /* Build configuration list for PBXNativeTarget "PresenceA48Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AECF167E1B0E0B1000CC83B2 /* Debug */,
+				AECF167F1B0E0B1000CC83B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AECF16531B0E0B1000CC83B2 /* Project object */;
+}
