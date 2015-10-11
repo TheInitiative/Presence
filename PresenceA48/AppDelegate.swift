@@ -148,8 +148,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate
                 notification.alertBody = "You entered Main room!"
                 
             default:
-                user["status"] = "Outside"
-                notification.alertBody = "Error identifying beacon"
+                user["status"] = "We broke: Gigantic error occured"
+                notification.alertBody = "Error identifying beacon/Person left"
             }
             
             user.saveInBackgroundWithBlock({ (success, error) -> Void in
@@ -157,6 +157,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate
             })
             UIApplication.sharedApplication().presentLocalNotificationNow(notification)
             
+        }
+    }
+    
+    func beaconManager(manager: AnyObject!, didExitRegion region: CLBeaconRegion!) {
+        if let user = PFUser.currentUser()
+        {
+            let notification = UILocalNotification()
+            user["status"] = "Outside"
+            notification.alertBody = "You left " + String(region)
+            
+            user.saveInBackgroundWithBlock({ (success, error) -> Void in
+                if let err = error { ErrorHanlding.displayError((self.window?.inputViewController)!, error: err) }
+            })
         }
     }
 

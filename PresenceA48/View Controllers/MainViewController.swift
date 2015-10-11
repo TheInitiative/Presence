@@ -14,6 +14,8 @@ class MainViewController: UIViewController
 {
     // MARK: Properties
     
+    var refreshControl: UIRefreshControl!
+    
     @IBOutlet weak var usersTableView: UITableView!
     @IBOutlet weak var baseButton: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -34,18 +36,46 @@ class MainViewController: UIViewController
     {
         super.viewDidLoad()
         
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh") //?? ID or some
+        self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        self.usersTableView.addSubview(refreshControl)
+        
         setup()
         
         // reload
-        ParseHelper.requestUsers()
-        { (users, error) in
-            if let users = users
-            {
-                self.users = users
-                self.usersTableView.reloadData()
-            }
-        }
+//        ParseHelper.requestUsers()
+//        { (users, error) in
+//            if let users = users
+//            {
+//                self.users = users
+//                self.usersTableView.reloadData()
+//            }
+//        }
+        reload()
         
+    }
+    
+    func refresh(sender: AnyObject)
+    {
+        reload()
+    }
+    
+    func reload()
+    {
+        ParseHelper.requestUsers()
+            { (users, error) in
+                if let users = users
+                {
+                    self.users = users
+                    self.usersTableView.reloadData()
+                }
+                if error != nil {
+                    print(error)
+                }
+        }
+        print("finished!")
+        self.refreshControl.endRefreshing()
     }
     
     func setup()
