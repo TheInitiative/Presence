@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate
     // Make beacon manager
     
     let beaconManager = ESTBeaconManager()
-//    let proximityUUID: NSUUID = NSUUID("B9407F30-F5F8-466E-AFF9-25556B57FE6D")
     let proximityUUID: NSUUID = NSUUID(UUIDString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")!
     
     override init()

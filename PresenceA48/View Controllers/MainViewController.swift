@@ -43,39 +43,9 @@ class MainViewController: UIViewController
         
         setup()
         
-        // reload
-//        ParseHelper.requestUsers()
-//        { (users, error) in
-//            if let users = users
-//            {
-//                self.users = users
-//                self.usersTableView.reloadData()
-//            }
-//        }
+        // initial data reload
         reload()
         
-    }
-    
-    func refresh(sender: AnyObject)
-    {
-        reload()
-    }
-    
-    func reload()
-    {
-        ParseHelper.requestUsers()
-            { (users, error) in
-                if let users = users
-                {
-                    self.users = users
-                    self.usersTableView.reloadData()
-                }
-                if error != nil {
-                    print(error)
-                }
-        }
-        print("finished!")
-        self.refreshControl.endRefreshing()
     }
     
     func setup()
@@ -126,6 +96,27 @@ class MainViewController: UIViewController
         searchTextField.font = UIFont(name: "HelveticaNeue-Light", size: 21)
         searchTextField.textColor = UIColor.grayColor()
 
+    }
+    
+    func refresh(sender: AnyObject)
+    {
+        reload()
+    }
+    
+    func reload()
+    {
+        ParseHelper.requestUsers()
+            { (users, error) in
+                if let users = users
+                {
+                    self.users = users
+                    self.usersTableView.reloadData()
+                }
+                if error != nil {
+                    print(error)
+                }
+        }
+        self.refreshControl.endRefreshing()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
