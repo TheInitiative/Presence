@@ -63,13 +63,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate
         
         // Setup the beacons!
         
-        self.beaconManager.startMonitoringForRegion(CLBeaconRegion(proximityUUID: proximityUUID, major: 21397, minor: 49589, identifier: "Blueberry"))
+        self.beaconManager.startMonitoringForRegion(CLBeaconRegion(proximityUUID: proximityUUID, major: 27443, minor: 13447, identifier: "SQUIRT"))
         
-        self.beaconManager.startMonitoringForRegion(CLBeaconRegion(proximityUUID: proximityUUID, major: 13815, minor: 51968, identifier:  "Mint"))
+        self.beaconManager.startMonitoringForRegion(CLBeaconRegion(proximityUUID: proximityUUID, major: 58650, minor: 21135, identifier:  "BULB"))
         
-        self.beaconManager.startMonitoringForRegion(CLBeaconRegion(proximityUUID: proximityUUID, major: 16123, minor: 35119, identifier: "Icy1"))
+        self.beaconManager.startMonitoringForRegion(CLBeaconRegion(proximityUUID: proximityUUID, major: 1516, minor: 28192, identifier: "PIKA"))
         
-        self.beaconManager.startMonitoringForRegion(CLBeaconRegion(proximityUUID: proximityUUID, major: 18550, minor: 58637, identifier: "Icy2"))
+        self.beaconManager.startMonitoringForRegion(CLBeaconRegion(proximityUUID: proximityUUID, major: 15847, minor: 43468, identifier: "MUD"))
+        
+        self.beaconManager.startMonitoringForRegion(CLBeaconRegion(proximityUUID: proximityUUID, major: 5659, minor: 27278, identifier: "TREE"))
+        
+        self.beaconManager.startMonitoringForRegion(CLBeaconRegion(proximityUUID: proximityUUID, major: 7348, minor: 43372, identifier: "MUD"))
         
         
         // User notifs
