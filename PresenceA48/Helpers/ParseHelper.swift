@@ -14,10 +14,24 @@ import FBSDKCoreKit
 class ParseHelper
 {
     static let ParseUserClass = "_User"
-    
-    static func requestUsers(completionBlock: (users: [PFUser]?, error: NSError?) -> Void)
+
+    static func requestUsers(filter filter: UserFilter?, completionBlock: (users: [PFUser]?, error: NSError?) -> Void)
     {
         let query = PFQuery(className: ParseUserClass)
+        
+        if let filter = filter
+        {
+            switch filter
+            {
+            case .All:
+                break
+            case .Inside:
+                query.whereKey("status", notEqualTo: "outside")
+            case .Outside:
+                query.whereKey("status", equalTo: "outside")
+            }
+        }
+
         query.findObjectsInBackgroundWithBlock()
         { (objects, error) in
             // removable
@@ -85,6 +99,9 @@ class ParseHelper
 
         return nil
     }
+    
+    // MARK: Filtering queries
+    
     
     
 }

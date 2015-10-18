@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate
     // Make beacon manager
     
     let beaconManager = ESTBeaconManager()
-//    let proximityUUID: NSUUID = NSUUID("B9407F30-F5F8-466E-AFF9-25556B57FE6D")
     let proximityUUID: NSUUID = NSUUID(UUIDString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")!
     
     override init()
@@ -136,23 +135,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate
             switch region.identifier
             {
             case "Blueberry":
-                user["status"] = "Upstairs"
+                user["status"] = UserStatus.Entrance.rawValue
                 notification.alertBody = "You entered Upstairs!"
                 
             case "Mint":
-                user["status"] = "Staff area"
+                user["status"] = UserStatus.FirstFloor.rawValue
                 notification.alertBody = "You entered Staff area!"
                 
             case "Icy1":
-                user["status"] = "Downstairs"
+                user["status"] = UserStatus.Lounge.rawValue
                 notification.alertBody = "You entered Downstairs!"
                 
             case "Icy2":
-                user["status"] = "Main room"
+                user["status"] = UserStatus.StaffArea.rawValue
                 notification.alertBody = "You entered Main room!"
                 
             default:
-                user["status"] = "We broke: Gigantic error occured"
+                user["status"] = UserStatus.Error.rawValue
                 notification.alertBody = "Error identifying beacon/Person left"
             }
             

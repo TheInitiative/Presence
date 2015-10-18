@@ -20,15 +20,20 @@ class MainViewController: UIViewController
     @IBOutlet weak var baseButton: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var searchBarTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var filterLabel: UILabel!
     
     var listButton: UIButton!
     var searchButton: UIButton!
     
+    // properties to pass on to UserViewController
     var selectedCellName: String?
     var selectedCellStatus: String?
     var selectedCellImage: UIImage?
 
     var users: [PFUser] = []
+    
+    // counter for list button
+    var listButtonTapCount: Int = 1
     
     // MARK: Methods
 
@@ -42,40 +47,9 @@ class MainViewController: UIViewController
         self.usersTableView.addSubview(refreshControl)
         
         setup()
+
+        reload(filter: .All)
         
-        // reload
-//        ParseHelper.requestUsers()
-//        { (users, error) in
-//            if let users = users
-//            {
-//                self.users = users
-//                self.usersTableView.reloadData()
-//            }
-//        }
-        reload()
-        
-    }
-    
-    func refresh(sender: AnyObject)
-    {
-        reload()
-    }
-    
-    func reload()
-    {
-        ParseHelper.requestUsers()
-            { (users, error) in
-                if let users = users
-                {
-                    self.users = users
-                    self.usersTableView.reloadData()
-                }
-                if error != nil {
-                    print(error)
-                }
-        }
-        print("finished!")
-        self.refreshControl.endRefreshing()
     }
     
     func setup()
@@ -143,14 +117,15 @@ class MainViewController: UIViewController
     
     // MARK: - Actions
     
-    // search bar animations
+    // MARK: --- Search bar animations
     func animateSearchBarEnter()
     {
         searchBar.becomeFirstResponder()
         UIView.animateWithDuration(0.5, animations:
-            {
-                self.searchBarTopConstraint.constant = 0
-                self.view.layoutIfNeeded()
+        {
+            self.filterLabel.layer.opacity = 0
+            self.searchBarTopConstraint.constant = 0
+            self.view.layoutIfNeeded()
         })
     }
     
@@ -158,9 +133,10 @@ class MainViewController: UIViewController
     {
         searchBar.resignFirstResponder()
         UIView.animateWithDuration(0.5, animations:
-            {
-                self.searchBarTopConstraint.constant = -64
-                self.view.layoutIfNeeded()
+        {
+            self.filterLabel.layer.opacity = 1
+            self.searchBarTopConstraint.constant = -64
+            self.view.layoutIfNeeded()
         })
     }
     
@@ -172,6 +148,8 @@ class MainViewController: UIViewController
         searchButton.selected = false
         
     }
+    
+    // MARK: --- Control button actions
     
     @IBAction func baseButtonTapped(sender: UIButton)
     {
@@ -228,7 +206,7 @@ class MainViewController: UIViewController
     @IBAction func listButtonTapped(sender: UIButton)
     {
         
-        // apply filtering code here
+        switchFilter()
         
     }
     
@@ -247,6 +225,50 @@ class MainViewController: UIViewController
             animateSearchBarEnter()
         }
         
+    }
+    
+    // MARK: --- Filter functionality
+    func switchFilter()
+    {
+        listButtonTapCount++
+        
+        switch listButtonTapCount
+        {
+        case 1:
+            filterLabel.text = "ALL USERS"
+            reload(filter: .All)
+        case 2:
+            filterLabel.text = "USERS INSIDE"
+            reload(filter: .Inside)
+        case 3:
+            filterLabel.text = "USERS OUTSIDE"
+            reload(filter: .Outside)
+            listButtonTapCount = 0
+        default:
+            filterLabel.text = "ALL USERS"
+        }
+    }
+    
+    // MARK: --- Refresh functionality
+    func refresh(sender: AnyObject)
+    {
+        reload(filter: .All)
+    }
+    
+    func reload(filter filter: UserFilter)
+    {
+        ParseHelper.requestUsers(filter: filter)
+            { (users, error) in
+                if let users = users
+                {
+                    self.users = users
+                    self.usersTableView.reloadData()
+                }
+                if error != nil {
+                    print(error)
+                }
+        }
+        self.refreshControl.endRefreshing()
     }
 
 }
@@ -272,7 +294,18 @@ extension MainViewController: UITableViewDataSource
         cell.nameLabel.text = user.username
         
         let userStatus = ParseHelper.requestUserStatus(user)
-        cell.statusLabel.text = userStatus
+        cell.statusLabel.text = userStatus.capitalizedString
+        
+        if (userStatus != UserStatus.Outside.rawValue)
+        {
+            // user is inside
+            cell.indicator.image = UIImage(named: "Indicator - Blue")
+        }
+        else
+        {
+            // user is outside
+            cell.indicator.image = UIImage(named: "Indicator - Red")
+        }
         
         let userProfilePic = ParseHelper.requestUserProfilePicture(user)
         if let userProfilePic = userProfilePic

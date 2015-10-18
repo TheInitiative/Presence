@@ -12,6 +12,7 @@
 		14A136381BC0A843000E708D /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A136371BC0A843000E708D /* ErrorHandling.swift */; };
 		33B70E221BC09DC8006414E9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B70E211BC09DC8006414E9 /* MainViewController.swift */; };
 		33B70E281BC0A12B006414E9 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B70E271BC0A12B006414E9 /* UserTableViewCell.swift */; };
+		33C24F6C1BD34FAA00BF53ED /* StatusHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C24F6B1BD34FAA00BF53ED /* StatusHelper.swift */; settings = {ASSET_TAGS = (); }; };
 		33DE6ABB1BC78D7B0086E525 /* ParseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DE6ABA1BC78D7B0086E525 /* ParseHelper.swift */; settings = {ASSET_TAGS = (); }; };
 		33DE6ABF1BC8EFA10086E525 /* BeaconHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DE6ABE1BC8EFA10086E525 /* BeaconHelper.swift */; settings = {ASSET_TAGS = (); }; };
 		33FAB0FD1BC0BCAE00D4AC17 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FAB0FC1BC0BCAE00D4AC17 /* UserViewController.swift */; };
@@ -40,6 +41,7 @@
 		14A136371BC0A843000E708D /* ErrorHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandling.swift; sourceTree = "<group>"; };
 		33B70E211BC09DC8006414E9 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		33B70E271BC0A12B006414E9 /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		33C24F6B1BD34FAA00BF53ED /* StatusHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatusHelper.swift; path = Helpers/StatusHelper.swift; sourceTree = "<group>"; };
 		33DE6ABA1BC78D7B0086E525 /* ParseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParseHelper.swift; path = Helpers/ParseHelper.swift; sourceTree = "<group>"; };
 		33DE6ABE1BC8EFA10086E525 /* BeaconHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BeaconHelper.swift; path = Helpers/BeaconHelper.swift; sourceTree = "<group>"; };
 		33FAB0FC1BC0BCAE00D4AC17 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				14A136371BC0A843000E708D /* ErrorHandling.swift */,
 				148CD5041BC0A03D00386C17 /* ParseLoginHelper.swift */,
 				33DE6ABA1BC78D7B0086E525 /* ParseHelper.swift */,
+				33C24F6B1BD34FAA00BF53ED /* StatusHelper.swift */,
 				33DE6ABE1BC8EFA10086E525 /* BeaconHelper.swift */,
 			);
 			name = Helpers;
@@ -350,6 +353,7 @@
 				33DE6ABB1BC78D7B0086E525 /* ParseHelper.swift in Sources */,
 				AECF16611B0E0B1000CC83B2 /* AppDelegate.swift in Sources */,
 				33FAB0FD1BC0BCAE00D4AC17 /* UserViewController.swift in Sources */,
+				33C24F6C1BD34FAA00BF53ED /* StatusHelper.swift in Sources */,
 				33DE6ABF1BC8EFA10086E525 /* BeaconHelper.swift in Sources */,
 				33B70E281BC0A12B006414E9 /* UserTableViewCell.swift in Sources */,
 				33B70E221BC09DC8006414E9 /* MainViewController.swift in Sources */,
