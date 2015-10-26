@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate
     {
         NSNotificationCenter.defaultCenter().addObserver(
             self,
-            selector: "changedLocation:",
+            selector: "changedl:",
             name: "",
             object: nil)
     }

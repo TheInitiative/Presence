@@ -57,7 +57,7 @@ class ParseHelper
         {
             return "Error fetching data"
         }
-    }
+    } 
     
     // get user profile picture
     
