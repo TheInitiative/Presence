@@ -15,6 +15,7 @@ enum UserStatus: String
     case StaffArea = "staff area"
     case Lounge = "lounge"
     case Basement = "basement"
+    case StaffLounge = "staff lounge"
     case Outside = "outside"
     case Error = "error"
 }

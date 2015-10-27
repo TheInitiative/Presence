@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate
     {
         NSNotificationCenter.defaultCenter().addObserver(
             self,
-            selector: "changedl:",
+            selector: "changed:",
             name: "",
             object: nil)
     }
@@ -62,18 +62,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate
         
         // Setup the beacons!
         
-        self.beaconManager.startMonitoringForRegion(CLBeaconRegion(proximityUUID: proximityUUID, major: 27443, minor: 13447, identifier: "SQUIRT"))
+        self.beaconManager.startMonitoringForRegion(CLBeaconRegion(proximityUUID: proximityUUID, major: 27443, minor: 13447, identifier: BeaconHelper.Squirt))
         
-        self.beaconManager.startMonitoringForRegion(CLBeaconRegion(proximityUUID: proximityUUID, major: 58650, minor: 21135, identifier:  "BULB"))
+        self.beaconManager.startMonitoringForRegion(CLBeaconRegion(proximityUUID: proximityUUID, major: 58650, minor: 21135, identifier:  BeaconHelper.Bulb))
         
-        self.beaconManager.startMonitoringForRegion(CLBeaconRegion(proximityUUID: proximityUUID, major: 1516, minor: 28192, identifier: "PIKA"))
+        self.beaconManager.startMonitoringForRegion(CLBeaconRegion(proximityUUID: proximityUUID, major: 1516, minor: 28192, identifier: BeaconHelper.Pika))
         
-        self.beaconManager.startMonitoringForRegion(CLBeaconRegion(proximityUUID: proximityUUID, major: 15847, minor: 43468, identifier: "MUD"))
+        self.beaconManager.startMonitoringForRegion(CLBeaconRegion(proximityUUID: proximityUUID, major: 15846, minor: 43468, identifier: BeaconHelper.Mud))
         
-        self.beaconManager.startMonitoringForRegion(CLBeaconRegion(proximityUUID: proximityUUID, major: 5659, minor: 27278, identifier: "TREE"))
+        self.beaconManager.startMonitoringForRegion(CLBeaconRegion(proximityUUID: proximityUUID, major: 5659, minor: 27278, identifier: BeaconHelper.Tree))
         
-        self.beaconManager.startMonitoringForRegion(CLBeaconRegion(proximityUUID: proximityUUID, major: 7348, minor: 43372, identifier: "MUD"))
+        self.beaconManager.startMonitoringForRegion(CLBeaconRegion(proximityUUID: proximityUUID, major: 7348, minor: 43372, identifier: BeaconHelper.Mew2))
         
+        // PARSE
         
         // User notifs
         UIApplication.sharedApplication().registerUserNotificationSettings(
@@ -124,40 +125,48 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     
-    // Beacon manager function belongs here?
-    
     func beaconManager(manager: AnyObject!, didEnterRegion region: CLBeaconRegion!)
     {
         if let user = PFUser.currentUser()
         {
             let notification = UILocalNotification()
-            // setup internat nsnotivication center to alert a function, push to parse based on the region
+            
+            let statusKey = "status"
             switch region.identifier
             {
-            case "Blueberry":
-                user["status"] = UserStatus.Entrance.rawValue
-                notification.alertBody = "You entered Upstairs!"
-                
-            case "Mint":
-                user["status"] = UserStatus.FirstFloor.rawValue
-                notification.alertBody = "You entered Staff area!"
-                
-            case "Icy1":
-                user["status"] = UserStatus.Lounge.rawValue
-                notification.alertBody = "You entered Downstairs!"
-                
-            case "Icy2":
-                user["status"] = UserStatus.StaffArea.rawValue
-                notification.alertBody = "You entered Main room!"
-                
+            case BeaconHelper.Squirt:
+                user[statusKey] = UserStatus.Entrance.rawValue
+                notification.alertBody = "You entered Entrance"
+                BeaconHelper.setTrueWithStatus(UserStatus.Entrance)
+            case BeaconHelper.Bulb:
+                user[statusKey] = UserStatus.FirstFloor.rawValue
+                notification.alertBody = "You entered First Floor"
+                BeaconHelper.setTrueWithStatus(UserStatus.FirstFloor)
+            case BeaconHelper.Pika:
+                user[statusKey] = UserStatus.Lounge.rawValue
+                notification.alertBody = "You entered Lounge"
+                BeaconHelper.setTrueWithStatus(UserStatus.Lounge)
+            case BeaconHelper.Mud:
+                user[statusKey] = UserStatus.StaffArea.rawValue
+                notification.alertBody = "You entered Staff Area"
+                BeaconHelper.setTrueWithStatus(UserStatus.StaffArea)
+            case BeaconHelper.Tree:
+                user[statusKey] = UserStatus.Basement.rawValue
+                notification.alertBody = "You entered Basement"
+                BeaconHelper.setTrueWithStatus(UserStatus.Basement)
+            case BeaconHelper.Mew2:
+                user[statusKey] = UserStatus.StaffLounge.rawValue
+                notification.alertBody = "You entered Staff Lounge!"
+                BeaconHelper.setTrueWithStatus(UserStatus.StaffLounge)
             default:
-                user["status"] = UserStatus.Error.rawValue
-                notification.alertBody = "Error identifying beacon/Person left"
+                user[statusKey] = UserStatus.Error.rawValue
+                notification.alertBody = "Error identifying beacon/Person entered"
             }
             
             user.saveInBackgroundWithBlock({ (success, error) -> Void in
                 if let err = error { ErrorHanlding.displayError((self.window?.inputViewController)!, error: err) }
             })
+            
             UIApplication.sharedApplication().presentLocalNotificationNow(notification)
             
         }
@@ -167,12 +176,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate
         if let user = PFUser.currentUser()
         {
             let notification = UILocalNotification()
-            user["status"] = "Outside"
-            notification.alertBody = "You left " + String(region)
+            
+            switch region.identifier
+            {
+            case BeaconHelper.Squirt:
+                notification.alertBody = "You left Entrance"
+                BeaconHelper.setFalseWithStatus(UserStatus.Entrance)
+            case BeaconHelper.Bulb:
+                notification.alertBody = "You left First Floor"
+                BeaconHelper.setFalseWithStatus(UserStatus.FirstFloor)
+            case BeaconHelper.Pika:
+                notification.alertBody = "You left Lounge"
+                BeaconHelper.setFalseWithStatus(UserStatus.Lounge)
+            case BeaconHelper.Mud:
+                notification.alertBody = "You left Staff Area"
+                BeaconHelper.setFalseWithStatus(UserStatus.StaffArea)
+            case BeaconHelper.Tree:
+                notification.alertBody = "You left Basement"
+                BeaconHelper.setFalseWithStatus(UserStatus.Basement)
+            case BeaconHelper.Mew2:
+                notification.alertBody = "You left Staff Lounge!"
+                BeaconHelper.setFalseWithStatus(UserStatus.StaffLounge)
+            default:
+                user["status"] = UserStatus.Error.rawValue
+                notification.alertBody = "Error identifying beacon/Person left"
+            }
+            
+            if BeaconHelper.checkIfOutside()
+            {
+                user["status"] = UserStatus.Outside.rawValue
+                notification.alertBody = ""
+            }
             
             user.saveInBackgroundWithBlock({ (success, error) -> Void in
                 if let err = error { ErrorHanlding.displayError((self.window?.inputViewController)!, error: err) }
             })
+            
+            UIApplication.sharedApplication().presentLocalNotificationNow(notification)
         }
     }
 

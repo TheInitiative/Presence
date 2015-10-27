@@ -34,6 +34,15 @@ class UserViewController: UIViewController
         self.nameLabel.text = name!
         self.statusMessageLabel.text = status!
         self.profilePicture.image = image!
+        
+        if (status! != UserStatus.Outside.rawValue)
+        {
+            indicator.image = UIImage(named: "Indicator - Large - Blue")
+        }
+        else
+        {
+            indicator.image = UIImage(named: "Indicator - Large - Red")
+        }
     }
     
     func setup()

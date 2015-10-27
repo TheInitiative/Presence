@@ -228,6 +228,7 @@ class MainViewController: UIViewController
     }
     
     // MARK: --- Filter functionality
+    
     func switchFilter()
     {
         listButtonTapCount++
@@ -250,6 +251,7 @@ class MainViewController: UIViewController
     }
     
     // MARK: --- Refresh functionality
+    
     func refresh(sender: AnyObject)
     {
         reload(filter: .All)
