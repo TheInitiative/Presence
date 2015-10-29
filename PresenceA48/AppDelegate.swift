@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate
     {
         // ESTIMOTE
         
-        ESTConfig.setupAppID("presence-a48", andAppToken: "1f15bfbc76eb65f76fc96ffdef4eb7e8")
+        ESTConfig.setupAppID("presence-gu1", andAppToken: "c4d68516cad8ce2f29631f02c19848b3")
         
         // Set delegate and request authorization
         
@@ -172,7 +172,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate
         }
     }
     
-    func beaconManager(manager: AnyObject!, didExitRegion region: CLBeaconRegion!) {
+    func beaconManager(manager: AnyObject!, didExitRegion region: CLBeaconRegion!)
+    {
         if let user = PFUser.currentUser()
         {
             let notification = UILocalNotification()
