@@ -32,7 +32,7 @@ class UserViewController: UIViewController
         
         // label setup source view controller
         self.nameLabel.text = name!
-        self.statusMessageLabel.text = status!
+        self.statusMessageLabel.text = status!.capitalizedString
         self.profilePicture.image = image!
         
         if (status! != UserStatus.Outside.rawValue)

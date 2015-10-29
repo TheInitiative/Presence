@@ -60,7 +60,7 @@ extension ParseLoginHelper : PFLogInViewControllerDelegate
                     user["fbID"]    = fbID
                     user["picture"] = "http://graph.facebook.com/" + fbID! + "/picture?width=300&height=300"
                     user.email      = data["email"].stringValue
-                    user.username   = fbUsername // stored using swift native syntax
+                    user.username   = fbUsername.lowercaseString // stored using swift native syntax
                     
                     // store User
                     user.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in

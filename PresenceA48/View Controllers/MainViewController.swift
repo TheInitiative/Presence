@@ -32,8 +32,11 @@ class MainViewController: UIViewController
 
     var users: [PFUser] = []
     
+    var searchedUsers: [PFUser] = []
+    
     // counter for list button
     var listButtonTapCount: Int = 1
+    
     
     // MARK: Methods
 
@@ -42,7 +45,7 @@ class MainViewController: UIViewController
         super.viewDidLoad()
         
         self.refreshControl = UIRefreshControl()
-        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh") //?? ID or some
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.usersTableView.addSubview(refreshControl)
         
@@ -293,7 +296,7 @@ extension MainViewController: UITableViewDataSource
         
         let user = users[indexPath.row]
         
-        cell.nameLabel.text = user.username
+        cell.nameLabel.text = user.username?.capitalizedString
         
         let userStatus = ParseHelper.requestUserStatus(user)
         cell.statusLabel.text = userStatus.capitalizedString
@@ -336,8 +339,8 @@ extension MainViewController: UITableViewDelegate
         usersTableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         let cell =  usersTableView.cellForRowAtIndexPath(indexPath) as! UserTableViewCell
-        selectedCellName = cell.nameLabel.text
-        selectedCellStatus = cell.statusLabel.text
+        selectedCellName = cell.nameLabel.text?.capitalizedString
+        selectedCellStatus = cell.statusLabel.text?.lowercaseString
         selectedCellImage = cell.profilePicture.image
         
         performSegueWithIdentifier("UserViewControllerSegue", sender: self)
@@ -348,6 +351,57 @@ extension MainViewController: UISearchBarDelegate
 {
     func searchBarCancelButtonClicked(searchBar: UISearchBar)
     {
+        // restore original data
+        ParseHelper.requestUsers(filter: nil)
+        {
+            (users, error) in
+            
+            if let error = error {
+                print(error.description)
+            }
+            
+            if let users = users
+            {
+                self.users = users
+                self.usersTableView.reloadData()
+            }
+            
+
+        }
+        
         dismissKeyboard()
+    }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String)
+    {
+        
+        if searchText.characters.count > 0 {
+            ParseHelper.searchUsersWithString(searchText) {
+                (foundUsers) in
+                
+                self.users = foundUsers
+                
+                self.usersTableView.reloadData()
+            }
+        }
+        else {
+            // restore original data
+            ParseHelper.requestUsers(filter: nil)
+                {
+                    (users, error) in
+                    
+                    if let error = error {
+                        print(error.description)
+                    }
+                    
+                    if let users = users
+                    {
+                        self.users = users
+                        self.usersTableView.reloadData()
+                    }
+                    
+            }
+        }
+        
     }
 }

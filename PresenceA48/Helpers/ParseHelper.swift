@@ -100,8 +100,30 @@ class ParseHelper
         return nil
     }
     
-    // MARK: Filtering queries
-    
-    
+    // query user by name
+    static func searchUsersWithString(string: String, completion: (users: [PFUser]) -> Void)
+    {
+        
+        let query = PFQuery(className: ParseUserClass)
+        
+        query.whereKey("username", containsString: string.lowercaseString)
+        
+        query.findObjectsInBackgroundWithBlock()
+        {
+            (results, error) in
+            
+            if let error = error
+            {
+                print(error.description)
+            }
+            
+            if let userResults = results as? [PFUser]
+            {
+                completion(users: userResults)
+            }
+            
+        }
+        
+    }
     
 }
