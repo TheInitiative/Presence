@@ -55,6 +55,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate 
         ESTConfig.setupAppID("presence-gu1", andAppToken: "c4d68516cad8ce2f29631f02c19848b3")
         
         // Set delegate and request authorization
+        
+        // beaconDelegate = BeaconDelegate()
+        // self.beaconManager.delegate = beaconDelegate
+        
         self.beaconManager.delegate = self
         self.beaconManager.requestAlwaysAuthorization()
         
@@ -62,9 +66,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate 
         self.beaconManager.startMonitoringForRegion(CLBeaconRegion(proximityUUID: proximityUUID, major: 27443, minor: 13447, identifier: BeaconHelper.Squirt))
         self.beaconManager.startMonitoringForRegion(CLBeaconRegion(proximityUUID: proximityUUID, major: 58650, minor: 21135, identifier:  BeaconHelper.Bulb))
         self.beaconManager.startMonitoringForRegion(CLBeaconRegion(proximityUUID: proximityUUID, major: 1516, minor: 28192, identifier: BeaconHelper.Pika))
-        self.beaconManager.startMonitoringForRegion(CLBeaconRegion(proximityUUID: proximityUUID, major: 15846, minor: 43468, identifier: BeaconHelper.Mud))
-        self.beaconManager.startMonitoringForRegion(CLBeaconRegion(proximityUUID: proximityUUID, major: 5659, minor: 27278, identifier: BeaconHelper.Tree))
-        self.beaconManager.startMonitoringForRegion(CLBeaconRegion(proximityUUID: proximityUUID, major: 7348, minor: 43372, identifier: BeaconHelper.Mew2))
         
         // PARSE
         
@@ -121,29 +122,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate 
             
             switch region.identifier {
             case BeaconHelper.Squirt:
-                user[statusKey] = UserStatus.Entrance.rawValue
-                notification.alertBody = "You entered Entrance"
-                BeaconHelper.setTrueWithStatus(UserStatus.Entrance)
+                user[statusKey] = UserStatus.RegionA.rawValue
+                notification.alertBody = "You entered the Squirtle Region"
+                BeaconHelper.setTrueWithStatus(UserStatus.RegionA)
             case BeaconHelper.Bulb:
-                user[statusKey] = UserStatus.FirstFloor.rawValue
-                notification.alertBody = "You entered First Floor"
-                BeaconHelper.setTrueWithStatus(UserStatus.FirstFloor)
+                user[statusKey] = UserStatus.RegionB.rawValue
+                notification.alertBody = "You entered the Bulbasaur Region"
+                BeaconHelper.setTrueWithStatus(UserStatus.RegionB)
             case BeaconHelper.Pika:
-                user[statusKey] = UserStatus.Lounge.rawValue
-                notification.alertBody = "You entered Lounge"
-                BeaconHelper.setTrueWithStatus(UserStatus.Lounge)
-            case BeaconHelper.Mud:
-                user[statusKey] = UserStatus.StaffArea.rawValue
-                notification.alertBody = "You entered Staff Area"
-                BeaconHelper.setTrueWithStatus(UserStatus.StaffArea)
-            case BeaconHelper.Tree:
-                user[statusKey] = UserStatus.Basement.rawValue
-                notification.alertBody = "You entered Basement"
-                BeaconHelper.setTrueWithStatus(UserStatus.Basement)
-            case BeaconHelper.Mew2:
-                user[statusKey] = UserStatus.StaffLounge.rawValue
-                notification.alertBody = "You entered Staff Lounge!"
-                BeaconHelper.setTrueWithStatus(UserStatus.StaffLounge)
+                user[statusKey] = UserStatus.RegionC.rawValue
+                notification.alertBody = "You entered the Pikachu Region"
+                BeaconHelper.setTrueWithStatus(UserStatus.RegionC)
             default:
                 user[statusKey] = UserStatus.Error.rawValue
                 notification.alertBody = "Error identifying beacon/Person entered"
@@ -165,31 +154,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate 
             
             switch region.identifier {
             case BeaconHelper.Squirt:
-                notification.alertBody = "You left Entrance"
-                BeaconHelper.setFalseWithStatus(UserStatus.Entrance)
+                notification.alertBody = "You left the Squirtle region"
+                BeaconHelper.setFalseWithStatus(UserStatus.RegionA)
             case BeaconHelper.Bulb:
-                notification.alertBody = "You left First Floor"
-                BeaconHelper.setFalseWithStatus(UserStatus.FirstFloor)
+                notification.alertBody = "You left the Bulbasaur region"
+                BeaconHelper.setFalseWithStatus(UserStatus.RegionB)
             case BeaconHelper.Pika:
-                notification.alertBody = "You left Lounge"
-                BeaconHelper.setFalseWithStatus(UserStatus.Lounge)
-            case BeaconHelper.Mud:
-                notification.alertBody = "You left Staff Area"
-                BeaconHelper.setFalseWithStatus(UserStatus.StaffArea)
-            case BeaconHelper.Tree:
-                notification.alertBody = "You left Basement"
-                BeaconHelper.setFalseWithStatus(UserStatus.Basement)
-            case BeaconHelper.Mew2:
-                notification.alertBody = "You left Staff Lounge!"
-                BeaconHelper.setFalseWithStatus(UserStatus.StaffLounge)
+                notification.alertBody = "You left the Pikachu region"
+                BeaconHelper.setFalseWithStatus(UserStatus.RegionC)
             default:
                 user["status"] = UserStatus.Error.rawValue
                 notification.alertBody = "Error identifying beacon/Person left"
-            }
-            
-            if BeaconHelper.checkIfOutside() {
-                user["status"] = UserStatus.Outside.rawValue
-                notification.alertBody = ""
             }
             
             user.saveInBackgroundWithBlock({

@@ -3,29 +3,39 @@
 //  PresenceA48
 //
 //  Created by Adrian Wisaksana on 10/10/15.
-//  Copyright © 2015 Quinn Baker. All rights reserved.
+//  Copyright © 2015 Adrian Wisaksana. All rights reserved.
 //
 
 import Foundation
+import Parse
 
 
 class BeaconHelper {
     
     static let Squirt = "SQUIRT"
     static let Pika = "PIKA"
-    static let Mud = "MUD"
-    static let Mew2 = "MEW2"
-    static let Tree = "TREE"
     static let Bulb = "BULB"
     
     static var beaconsInRange: [String: Bool] = [
-        UserStatus.Entrance.rawValue: false,
-        UserStatus.FirstFloor.rawValue: false,
-        UserStatus.Lounge.rawValue: false,
-        UserStatus.StaffArea.rawValue: false,
-        UserStatus.StaffLounge.rawValue: false,
-        UserStatus.Basement.rawValue: false
+        UserStatus.RegionA.rawValue: false,
+        UserStatus.RegionB.rawValue: false,
+        UserStatus.RegionC.rawValue: false,
     ]
+    {
+        didSet {
+            if isOutside() {
+                let notification = UILocalNotification()
+                if let user = PFUser.currentUser() {
+                    user["status"] = UserStatus.Outside.rawValue
+                    
+                    notification.alertBody = "You left the regions"
+                    UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+                    
+                    user.saveInBackground()
+                }
+            }
+        }
+    }
     
     static func setTrueWithStatus(status: UserStatus) {
         
@@ -39,7 +49,7 @@ class BeaconHelper {
         
     }
     
-    static func checkIfOutside() -> Bool {
+    static func isOutside() -> Bool {
         
         var outsideCount = 0
         for inRegion in beaconsInRange.values {
@@ -48,7 +58,7 @@ class BeaconHelper {
             }
         }
         
-        if outsideCount == 6 { return true }
+        if outsideCount == 3 { return true }
         else { return false }
     
     }

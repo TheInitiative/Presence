@@ -177,18 +177,17 @@ class MainViewController: UIViewController {
 
 }
 
+
 // MARK: - Extensions
 
 extension MainViewController: UITableViewDataSource {
     
-    // set number of rows
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return users.count
         
     }
     
-    // access rows at index path
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = usersTableView.dequeueReusableCellWithIdentifier("UserCell") as! UserTableViewCell
@@ -224,7 +223,7 @@ extension MainViewController: UITableViewDataSource {
 extension MainViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        // deselect row
+
         usersTableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         let cell =  usersTableView.cellForRowAtIndexPath(indexPath) as! UserTableViewCell

@@ -10,12 +10,9 @@ import Foundation
 
 enum UserStatus: String {
     
-    case Entrance = "entrance"
-    case FirstFloor = "first floor"
-    case StaffArea = "staff area"
-    case Lounge = "lounge"
-    case Basement = "basement"
-    case StaffLounge = "staff lounge"
+    case RegionA = "region a"
+    case RegionB = "region b"
+    case RegionC = "region c"
     case Outside = "outside"
     case Error = "error"
     
