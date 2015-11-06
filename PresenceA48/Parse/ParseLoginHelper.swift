@@ -49,7 +49,6 @@ extension ParseLoginHelper : PFLogInViewControllerDelegate
                 }
                 
                 let fbID = result?["id"] as? String
-//                let graphUrl = "/" + fbID!
                 
                 if let fbUsername = result?["name"] as? String
                 {

@@ -8,8 +8,7 @@
 
 import UIKit
 
-class UserTableViewCell: UITableViewCell
-{
+class UserTableViewCell: UITableViewCell {
 
     // MARK: - Properties
     @IBOutlet weak var profilePicture: UIImageView!
@@ -19,8 +18,7 @@ class UserTableViewCell: UITableViewCell
     
     // MARK: - Methods
     
-    override func awakeFromNib()
-    {
+    override func awakeFromNib() {
         super.awakeFromNib()
         
         // round imageView
@@ -33,8 +31,7 @@ class UserTableViewCell: UITableViewCell
         selectedBackgroundView = blueColorView
     }
 
-    override func setSelected(selected: Bool, animated: Bool)
-    {
+    override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
 }

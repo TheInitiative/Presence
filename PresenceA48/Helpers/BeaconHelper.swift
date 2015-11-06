@@ -9,15 +9,14 @@
 import Foundation
 
 
-class BeaconHelper
-{
+class BeaconHelper {
+    
     static let Squirt = "SQUIRT"
     static let Pika = "PIKA"
     static let Mud = "MUD"
     static let Mew2 = "MEW2"
     static let Tree = "TREE"
     static let Bulb = "BULB"
-    
     
     static var beaconsInRange: [String: Bool] = [
         UserStatus.Entrance.rawValue: false,
@@ -28,21 +27,22 @@ class BeaconHelper
         UserStatus.Basement.rawValue: false
     ]
     
-    static func setTrueWithStatus(status: UserStatus)
-    {
+    static func setTrueWithStatus(status: UserStatus) {
+        
         beaconsInRange[status.rawValue] = true
+        
     }
     
-    static func setFalseWithStatus(status: UserStatus)
-    {
+    static func setFalseWithStatus(status: UserStatus) {
+        
         beaconsInRange[status.rawValue] = false
+        
     }
     
-    static func checkIfOutside() -> Bool
-    {
+    static func checkIfOutside() -> Bool {
+        
         var outsideCount = 0
-        for inRegion in beaconsInRange.values
-        {
+        for inRegion in beaconsInRange.values {
             if !inRegion {
                 outsideCount++
             }

@@ -10,19 +10,20 @@ import Foundation
 import Parse
 import FBSDKCoreKit
 
+typealias GetDataFromURLCallback = (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void
+typealias RequestUserProfilePictureCallback = (image: UIImage?) -> Void
 
-class ParseHelper
-{
-    static let ParseUserClass = "_User"
 
-    static func requestUsers(filter filter: UserFilter?, completionBlock: (users: [PFUser]?, error: NSError?) -> Void)
-    {
-        let query = PFQuery(className: ParseUserClass)
+class ParseHelper {
+    
+    static let ParseUserClassName = "_User"
+
+    static func requestUsers(filter filter: UserFilter?, completionBlock: (users: [PFUser]?, error: NSError?) -> Void) {
         
-        if let filter = filter
-        {
-            switch filter
-            {
+        let query = PFQuery(className: ParseUserClassName)
+        
+        if let filter = filter {
+            switch filter {
             case .All:
                 break
             case .Inside:
@@ -32,93 +33,81 @@ class ParseHelper
             }
         }
 
-        query.findObjectsInBackgroundWithBlock()
-        { (objects, error) in
-            // removable
-            if (error != nil)
-            {
+        query.findObjectsInBackgroundWithBlock() { (objects, error) in
+            
+            if (error != nil) {
                 print(error?.description)
             }
             
-            if let users = objects as? [PFUser]
-            {
+            if let users = objects as? [PFUser] {
                 completionBlock(users: users, error: nil)
             }
         }
+        
     }
     
-    static func requestUserStatus(user: PFUser) -> String
-    {
-        if let userStatus = user.valueForKey("status") as? String
-        {
+    static func requestUserStatus(user: PFUser) -> String {
+        
+        if let userStatus = user.valueForKey("status") as? String {
             return userStatus
-        }
-        else
-        {
+        } else {
             return "Error fetching data"
         }
+        
     } 
     
     // get user profile picture
     
-    static func getDataFromUrl(url: NSURL, completionBlock: ((data: NSData?, response: NSURLResponse?, error: NSError? ) -> Void))
-    {
-        NSURLSession.sharedSession().dataTaskWithURL(url)
-        { (data, response, error) in
+    static func getDataFromUrl(url: NSURL, completionBlock: GetDataFromURLCallback) {
+        
+        let task = NSURLSession.sharedSession().dataTaskWithURL(url) {
+            (data, response, error) in
+            
             completionBlock(data: data, response: response, error: error)
-        }.resume()
-    }
-    
-    static func downloadImage(url: NSURL, completionBlock: (image: UIImage?) -> Void)
-    {
-        print("Started downloading \"\(url.URLByDeletingPathExtension!.lastPathComponent!)\".")
-        getDataFromUrl(url)
-        { (data, response, error)  in
-            dispatch_async(dispatch_get_main_queue())
-            { () -> Void in
-                guard let data = data where error == nil else { return }
-                print("Finished downloading \"\(url.URLByDeletingPathExtension!.lastPathComponent!)\".")
-                let image = UIImage(data: data)
-                completionBlock(image: image)
-            }
         }
+        
+        task.resume()
+        
     }
     
-    static func requestUserProfilePicture(user: PFUser) -> UIImage?
-    {
-        let path = user.valueForKey("picture") as! String
+    static func requestUserProfilePicture(user: PFUser, completion: RequestUserProfilePictureCallback) {
         
-        if let url = NSURL(string: path)
-        {
-            if let data = NSData(contentsOfURL: url)
-            {
-                let image = UIImage(data: data)
-                return image
+        let urlPath = user.valueForKey("picture") as! String
+        
+        if let url = NSURL(string: urlPath) {
+            
+            getDataFromUrl(url) {
+                (data, response, error) in
+                
+                if let error = error {
+                    print(error.description)
+                }
+                
+                dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                    guard let data = data where error == nil else { return }
+                    let image = UIImage(data: data)
+                    completion(image: image)
+                }
             }
+            
         }
-
-        return nil
+    
     }
     
-    // query user by name
-    static func searchUsersWithString(string: String, completion: (users: [PFUser]) -> Void)
-    {
+    static func searchUsersWithString(string: String, completion: (users: [PFUser]) -> Void) {
         
-        let query = PFQuery(className: ParseUserClass)
+        let query = PFQuery(className: ParseUserClassName)
         
         query.whereKey("username", containsString: string.lowercaseString)
         
-        query.findObjectsInBackgroundWithBlock()
-        {
+        query.findObjectsInBackgroundWithBlock() {
             (results, error) in
             
-            if let error = error
-            {
+            if let error = error {
                 print(error.description)
             }
             
-            if let userResults = results as? [PFUser]
-            {
+            if let userResults = results as? [PFUser] {
                 completion(users: userResults)
             }
             

@@ -8,8 +8,8 @@
 
 import Foundation
 
-enum UserStatus: String
-{
+enum UserStatus: String {
+    
     case Entrance = "entrance"
     case FirstFloor = "first floor"
     case StaffArea = "staff area"
@@ -18,12 +18,14 @@ enum UserStatus: String
     case StaffLounge = "staff lounge"
     case Outside = "outside"
     case Error = "error"
+    
 }
 
-enum UserFilter
-{
+enum UserFilter {
+    
     case All
     case Inside
     case Outside
+    
 }
 
