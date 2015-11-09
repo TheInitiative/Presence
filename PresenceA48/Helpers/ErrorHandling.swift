@@ -17,6 +17,7 @@ class ErrorHanlding
             title: "Error",
             message: error.description,
             preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
         
         controller.presentViewController(alertController, animated: true, completion: nil)
     }
