@@ -11,14 +11,15 @@ import Parse
 import FBSDKCoreKit
 
 typealias GetDataFromURLCallback = (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void
-typealias RequestUserProfilePictureCallback = (image: UIImage?) -> Void
+typealias RequestUserProfilePictureCallback = (image: UIImage?, error: NSError?) -> Void
 
 
-class ParseHelper {
-    
+class ParseHelper
+{
     static let ParseUserClassName = "_User"
 
-    static func requestUsers(filter filter: UserFilter?, completionBlock: (users: [PFUser]?, error: NSError?) -> Void) {
+    static func requestUsers(filter filter: UserFilter?, completionBlock: (users: [PFUser]?, error: NSError?) -> Void)
+    {
         
         let query = PFQuery(className: ParseUserClassName)
         
@@ -35,84 +36,69 @@ class ParseHelper {
 
         query.findObjectsInBackgroundWithBlock() { (objects, error) in
             
-            if (error != nil) {
-                print(error?.description)
-            }
-            
             if let users = objects as? [PFUser] {
                 completionBlock(users: users, error: nil)
             }
+            else { completionBlock(users: nil, error: error) }
         }
-        
     }
     
-    static func requestUserStatus(user: PFUser) -> String {
-        
-        if let userStatus = user.valueForKey("status") as? String {
-            return userStatus
-        } else {
-            return "Error fetching data"
+    static func requestUserStatus(user: PFUser, onComplete: (status: String?, error: NSError?)-> () )
+    {
+        let userQuery = PFQuery(className: ParseUserClassName)
+        userQuery.whereKeyExists("status")
+        userQuery.findObjectsInBackgroundWithBlock { (response, error) -> Void in
+            
+            if let status = response?.first
+            {
+                let castStatus = status.valueForKey("status") as! String
+                onComplete(status: castStatus, error: nil)
+            }
+            else { onComplete(status: nil, error: error) }
         }
-        
-    } 
-    
+    }
     // get user profile picture
     
-    static func getDataFromUrl(url: NSURL, completionBlock: GetDataFromURLCallback) {
-        
-        let task = NSURLSession.sharedSession().dataTaskWithURL(url) {
-            (data, response, error) in
+    static func getDataFromUrl(url: NSURL, completionBlock: GetDataFromURLCallback)
+    {
+        let task = NSURLSession.sharedSession().dataTaskWithURL(url)
+        { (data, response, error) in
             
-            completionBlock(data: data, response: response, error: error)
+            if let picture = data { completionBlock(data: picture, response: response, error: error) }
+            else { completionBlock(data: nil, response: nil, error: error) }
         }
-        
         task.resume()
-        
     }
     
-    static func requestUserProfilePicture(user: PFUser, completion: RequestUserProfilePictureCallback) {
-        
+    static func requestUserProfilePicture(user: PFUser, completion: RequestUserProfilePictureCallback)
+    {
         let urlPath = user.valueForKey("picture") as! String
         
-        if let url = NSURL(string: urlPath) {
-            
-            getDataFromUrl(url) {
-                (data, response, error) in
-                
-                if let error = error {
-                    print(error.description)
-                }
+        if let url = NSURL(string: urlPath)
+        {
+            getDataFromUrl(url)
+            { (data, response, error) in
                 
                 dispatch_async(dispatch_get_main_queue()) { () -> Void in
-                    guard let data = data where error == nil else { return }
+                    guard let data = data where error == nil else { completion(image: nil, error: error); return } // GUARD is probably not the best thing to use here...
                     let image = UIImage(data: data)
-                    completion(image: image)
+                    completion(image: image, error: nil)
                 }
             }
-            
         }
-    
     }
     
-    static func searchUsersWithString(string: String, completion: (users: [PFUser]) -> Void) {
-        
+    static func searchUsersWithString(string: String, completion: (users: [PFUser]?, error: NSError?) -> Void)
+    {
         let query = PFQuery(className: ParseUserClassName)
         
         query.whereKey("username", containsString: string.lowercaseString)
         
-        query.findObjectsInBackgroundWithBlock() {
-            (results, error) in
+        query.findObjectsInBackgroundWithBlock()
+        { (results, error) in
             
-            if let error = error {
-                print(error.description)
-            }
-            
-            if let userResults = results as? [PFUser] {
-                completion(users: userResults)
-            }
-            
+            if let userResults = results as? [PFUser] { completion(users: userResults, error: nil) }
+            else { completion(users: nil, error: error) }
         }
-        
     }
-    
 }

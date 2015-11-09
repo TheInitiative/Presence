@@ -164,17 +164,15 @@ class MainViewController: UIViewController {
     func reload(filter filter: UserFilter) {
         ParseHelper.requestUsers(filter: filter) {
             (users, error) in
+            
             if let users = users {
                 self.users = users
                 self.usersTableView.reloadData()
             }
-            if error != nil {
-                print(error)
-            }
+            else { ErrorHanlding.displayError(self, error: error!) }
         }
         self.refreshControl.endRefreshing()
     }
-
 }
 
 
@@ -182,42 +180,46 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UITableViewDataSource {
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return users.count
-        
-    }
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return users.count }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = usersTableView.dequeueReusableCellWithIdentifier("UserCell") as! UserTableViewCell
-        
         let user = users[indexPath.row]
+        var userStatus: String?
         
+        let cell = usersTableView.dequeueReusableCellWithIdentifier("UserCell") as! UserTableViewCell
         cell.nameLabel.text = user.username?.capitalizedString
         
-        let userStatus = ParseHelper.requestUserStatus(user)
-        cell.statusLabel.text = userStatus.capitalizedString
-        
-        if (userStatus != UserStatus.Outside.rawValue) {
-            // user is inside
-            cell.indicator.image = UIImage(named: "Indicator - Blue")
-        } else {
-            // user is outside
-            cell.indicator.image = UIImage(named: "Indicator - Red")
+        ParseHelper.requestUserStatus(user) { (status, error) -> () in
+            
+            if let status = status { userStatus = status }
+            else
+            {
+                ErrorHanlding.displayError(self, error: error!)
+                userStatus = "unavailable"
+            }
+            
+            cell.statusLabel.text = userStatus!.capitalizedString
+            
+            if (userStatus != UserStatus.Outside.rawValue) {
+                // user is inside
+                cell.indicator.image = UIImage(named: "Indicator - Blue")
+            } else {
+                // user is outside
+                cell.indicator.image = UIImage(named: "Indicator - Red")
+            }
         }
 
         ParseHelper.requestUserProfilePicture(user) {
-            (userProfilePicture) in
+            (userProfilePicture, error) in
             
             if let profilePicture = userProfilePicture {
                 cell.profilePicture.image = profilePicture
             }
+            else { ErrorHanlding.displayError(self, error: error!) }
         }
-
         return cell
     }
-    
 }
 
 extension MainViewController: UITableViewDelegate {
@@ -242,42 +244,38 @@ extension MainViewController: UISearchBarDelegate {
         ParseHelper.requestUsers(filter: nil) {
             (users, error) in
             
-            if let error = error {
-                print(error.description)
-            }
-            
             if let users = users {
                 self.users = users
                 self.usersTableView.reloadData()
             }
-
+            else { ErrorHanlding.displayError(self, error: error!) }
         }
-        
         dismissKeyboard()
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         
         if (searchText.characters.count > 0) {
-            ParseHelper.searchUsersWithString(searchText) {
-                (foundUsers) in
+            
+            ParseHelper.searchUsersWithString(searchText, completion: { (users, error) -> Void in
                 
-                self.users = foundUsers
-                self.usersTableView.reloadData()
-            }
+                if let foundUsers = users {
+                    self.users = foundUsers
+                    self.usersTableView.reloadData()
+                }
+                else { ErrorHanlding.displayError(self, error: error!) }
+            })
         } else {
+            
             // restore original data
             ParseHelper.requestUsers(filter: nil) {
                 (users, error) in
-                
-                if let error = error {
-                    print(error.description)
-                }
                 
                 if let users = users {
                     self.users = users
                     self.usersTableView.reloadData()
                 }
+                else { ErrorHanlding.displayError(self, error: error!) }
             }
         }
         

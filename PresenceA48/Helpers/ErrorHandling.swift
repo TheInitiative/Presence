@@ -20,5 +20,4 @@ class ErrorHanlding
         
         controller.presentViewController(alertController, animated: true, completion: nil)
     }
-    
 }

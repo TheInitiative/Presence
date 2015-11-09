@@ -16,11 +16,12 @@ class BeaconHelper {
     static let Pika = "PIKA"
     static let Bulb = "BULB"
     
-    static var beaconsInRange: [String: Bool] = [
-        UserStatus.RegionA.rawValue: false,
-        UserStatus.RegionB.rawValue: false,
-        UserStatus.RegionC.rawValue: false,
-    ]
+    static var beaconsInRange: [String: Bool] =
+        [
+            UserStatus.RegionA.rawValue: false,
+            UserStatus.RegionB.rawValue: false,
+            UserStatus.RegionC.rawValue: false,
+        ]
     {
         didSet {
             if isOutside() {
