@@ -46,13 +46,12 @@ class ParseHelper
     static func requestUserStatus(user: PFUser, onComplete: (status: String?, error: NSError?)-> () )
     {
         let userQuery = PFQuery(className: ParseUserClassName)
-        userQuery.whereKeyExists("status")
+        userQuery.whereKey("objectId", equalTo: user.objectId!)
         userQuery.findObjectsInBackgroundWithBlock { (response, error) -> Void in
             
-            if let status = response?.first
+            if let status = response?.first!.valueForKey("status") as! String?
             {
-                let castStatus = status.valueForKey("status") as! String
-                onComplete(status: castStatus, error: nil)
+                onComplete(status: status, error: nil)
             }
             else { onComplete(status: nil, error: error) }
         }
